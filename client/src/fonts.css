@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'YekanBakhFaNum';
+  src: url('/fonts/YekanBakhFaNum-VF.woff2') format('woff2'),
+       url('/fonts/YekanBakhFaNum-VF.woff') format('woff');
+  font-weight: 100 1000;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* RTL text direction for Farsi content */
+.font-yekan {
+  font-family: 'YekanBakhFaNum', system-ui, sans-serif;
+  direction: rtl;
+}
