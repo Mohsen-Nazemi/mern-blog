@@ -15,10 +15,10 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-     if (!formData.username || !formData.email || !formData.password) {
+    if (!formData.username || !formData.email || !formData.password) {
       return setErrorMessage('Please fill out all fields.');
     }
-      try {
+    try {
       setLoading(true);
       setErrorMessage(null);
       const res = await fetch('/api/auth/signup', {
@@ -28,10 +28,11 @@ export default function SignUp() {
       });
       const data = await res.json();
       if (data.success === false) {
+        setLoading(false);
         return setErrorMessage(data.message);
       }
       setLoading(false);
-      if(res.ok) {
+      if (res.ok) {
         navigate('/sign-in');
       }
     } catch (error) {
@@ -171,11 +172,15 @@ export default function SignUp() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                {loading? 'در حال ایجاد حساب ...': 'ایجاد حساب'}
+                {loading ? 'در حال ایجاد حساب ...' : 'ایجاد حساب'}
               </button>
             </div>
           </form>
-
+          {errorMessage && (
+            <p className='mt-5 text-red-600 text-sm/6 text-center'>
+              {errorMessage}
+            </p>
+          )}
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             حساب کاربری از قبل ایجاد کرده‌اید؟{" "}
             <Link
