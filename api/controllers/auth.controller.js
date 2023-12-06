@@ -38,7 +38,6 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
-
   if (!email || !password || email === '' || password === '') {
     next(errorHandler(400, 'All fields are required'));
   }
